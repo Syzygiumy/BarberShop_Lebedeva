@@ -21,6 +21,9 @@ namespace BarberShop_Lebedeva.Windows
     /// </summary>
     public partial class AddClientWindow : Window
     {
+        EF.Client editClient = new EF.Client();
+
+        bool isEdit = true;
         public AddClientWindow()
         {
            
@@ -28,6 +31,28 @@ namespace BarberShop_Lebedeva.Windows
             cmb_Gender.ItemsSource = ClassesHelper.AppData.context.Gender.ToList();
             cmb_Gender.DisplayMemberPath = "NameGender";
             cmb_Gender.SelectedIndex = 0;
+
+            isEdit = false;
+        }
+
+        public AddClientWindow(EF.Client client)
+        {
+            InitializeComponent();
+            cmb_Gender.ItemsSource = ClassesHelper.AppData.context.Specialization.ToList();
+            cmb_Gender.DisplayMemberPath = "NameSpecialization";
+            cmb_Gender.SelectedIndex = Convert.ToInt32(client.IDGender - 1);
+
+            txt_FName.Text = client.FName;
+            txt_LName.Text = client.LName;
+            txt_Phone.Text = client.Phone;
+            txt_Email.Text = client.Email;
+
+            tb_Title.Text = "Изменение данных клиента";
+
+            btn_AddClient.Content = "Изменить";
+
+            editClient = client;
+            isEdit = true;
         }
 
         //Тулуфон
@@ -191,19 +216,36 @@ namespace BarberShop_Lebedeva.Windows
             {
                 if (resClick == MessageBoxResult.Yes)
                 {
-                    EF.Client addClient = new EF.Client();
-                    addClient.FName = txt_FName.Text;
-                    addClient.LName = txt_LName.Text;
-                    addClient.Phone = txt_Phone.Text;
-                    addClient.Email = txt_Email.Text;
-                    addClient.IDGender = cmb_Gender.SelectedIndex + 1;
-                   
+                    if (isEdit)
+                    {
+                        EF.Client addClient = new EF.Client();
+                        addClient.FName = txt_FName.Text;
+                        addClient.LName = txt_LName.Text;
+                        addClient.Phone = txt_Phone.Text;
+                        addClient.Email = txt_Email.Text;
+                        addClient.IDGender = cmb_Gender.SelectedIndex + 1;
 
-                    ClassesHelper.AppData.context.Client.Add(addClient);
-                    ClassesHelper.AppData.context.SaveChanges();
+                        ClassesHelper.AppData.context.SaveChanges();
 
-                    MessageBox.Show("Клиент успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                    this.Close();
+                        MessageBox.Show("Клиент успешно изменён", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        EF.Client addClient = new EF.Client();
+                        addClient.FName = txt_FName.Text;
+                        addClient.LName = txt_LName.Text;
+                        addClient.Phone = txt_Phone.Text;
+                        addClient.Email = txt_Email.Text;
+                        addClient.IDGender = cmb_Gender.SelectedIndex + 1;
+
+
+                        ClassesHelper.AppData.context.Client.Add(addClient);
+                        ClassesHelper.AppData.context.SaveChanges();
+
+                        MessageBox.Show("Клиент успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                        this.Close();
+                    }
                 }
         }
             catch (Exception ex)

@@ -40,16 +40,7 @@
                 FontSize="20" 
                 Background="#FFCEDCFF"
                 Foreground="#FF1A296B" x:Name="btn_Client"
-                Click="btn_Client_Click"/>
-
-        <Button Grid.Row="1"
-                Width="200"
-                Height="40"
-                Content="Список услуг"
-                FontSize="20" 
-                Background="#FFCEDCFF"
-                Foreground="#FF1A296B" 
-                Margin="0,190,0,0"/>
+                Click="btn_Client_Click" Margin="0,60,0,0"/>
 
     </Grid>
 </Window>

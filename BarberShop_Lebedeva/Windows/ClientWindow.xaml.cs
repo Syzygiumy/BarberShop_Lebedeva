@@ -10,16 +10,14 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BarberShop_Lebedeva.Windows;
 
-namespace BarberShop_Lebedeva.Pages
+namespace BarberShop_Lebedeva.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для ClientPage.xaml
+    /// Логика взаимодействия для ClientWindow.xaml
     /// </summary>
-    public partial class ClientPage : Page
+    public partial class ClientWindow : Window
     {
         List<EF.Client> listClient = new List<EF.Client>();
 
@@ -33,7 +31,7 @@ namespace BarberShop_Lebedeva.Pages
             "По полу"
         };
 
-        public ClientPage()
+        public ClientWindow()
         {
             InitializeComponent();
             cmb_Sort.ItemsSource = listForSort;
@@ -96,6 +94,45 @@ namespace BarberShop_Lebedeva.Pages
 
         private void cmb_Sort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Filter();
+        }
+
+        private void btn_Back_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+        private void lvClient_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete || e.Key == Key.Back)
+            {
+                var resClick = MessageBox.Show($"Удалить пользователя {(lvClient.SelectedItem as EF.Client).LName}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                try
+                {
+
+                    if (resClick == MessageBoxResult.Yes)
+                    {
+                        EF.Client userDel = new EF.Client();
+
+                        if (!(lvClient.SelectedItem is EF.Client))
+                        {
+                            MessageBox.Show("Запись не выбрана");
+                            return;
+                        }
+                        userDel = (lvClient.SelectedItem as EF.Client);
+                        ClassesHelper.AppData.context.Client.Remove(userDel);
+                        ClassesHelper.AppData.context.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                MessageBox.Show($"Пользователь успешно удалён", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             Filter();
         }
     }

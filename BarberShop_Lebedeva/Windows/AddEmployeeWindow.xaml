@@ -36,7 +36,8 @@
                    HorizontalAlignment="Center"
                    FontSize="30"
                    Foreground="#FF1A296B"
-                   Grid.ColumnSpan="2" />
+                   Grid.ColumnSpan="2" 
+                   x:Name="tb_Title"/>
         <TextBlock Grid.Row="1"
                    HorizontalAlignment="Right"
                    Text="Имя:"

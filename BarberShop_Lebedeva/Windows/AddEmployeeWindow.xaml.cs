@@ -21,14 +21,39 @@ namespace BarberShop_Lebedeva.Windows
     /// </summary>
     public partial class AddEmployeeWindow : Window
     {
+        EF.Emploee editEmploee = new EF.Emploee();
+
+        bool isEdit = true;
         public AddEmployeeWindow()
         {
             InitializeComponent();
             cmb_Spec.ItemsSource = ClassesHelper.AppData.context.Specialization.ToList();
             cmb_Spec.DisplayMemberPath = "NameSpecialization";
             cmb_Spec.SelectedIndex = 0;
+
+            isEdit = false;
         }
 
+        public AddEmployeeWindow(EF.Emploee emploee)
+        {
+            InitializeComponent();
+            cmb_Spec.ItemsSource = ClassesHelper.AppData.context.Specialization.ToList();
+            cmb_Spec.DisplayMemberPath = "NameSpecialization";
+            cmb_Spec.SelectedIndex = Convert.ToInt32(emploee.IDNameSpecialization - 1);
+
+            txt_FName.Text = emploee.FName;
+            txt_LName.Text = emploee.LName;
+            txt_Phone.Text = emploee.Phone;
+            txt_Login.Text = emploee.Login;
+            txt_Password.Password = emploee.Password;
+
+            tb_Title.Text = "Изменение данных работника";
+
+            btn_AddEmlp.Content = "Изменить";
+
+            editEmploee = emploee;
+            isEdit = true;
+        }
         private void btn_AddEmlp_Click(object sender, RoutedEventArgs e)
         {
             //Проверка на пустоту
@@ -95,19 +120,37 @@ namespace BarberShop_Lebedeva.Windows
             {
                 if (resClick == MessageBoxResult.Yes)
             {
-                EF.Emploee addEmployee = new EF.Emploee();
-                addEmployee.FName = txt_FName.Text;
-                    addEmployee.LName = txt_LName.Text;
-                addEmployee.Phone = txt_Phone.Text;
-                addEmployee.IDNameSpecialization = cmb_Spec.SelectedIndex + 2;
-                addEmployee.Login = txt_Login.Text;
-                addEmployee.Password = txt_Password.Password;
+                    if (isEdit)
+                    {
+                        EF.Emploee editEmployee = new EF.Emploee();
+                        editEmployee.FName = txt_FName.Text;
+                        editEmployee.LName = txt_LName.Text;
+                        editEmployee.Phone = txt_Phone.Text;
+                        editEmployee.IDNameSpecialization = cmb_Spec.SelectedIndex + 2;
+                        editEmployee.Login = txt_Login.Text;
+                        editEmployee.Password = txt_Password.Password;
 
-                ClassesHelper.AppData.context.Emploee.Add(addEmployee);
-                    ClassesHelper.AppData.context.SaveChanges();
+                        ClassesHelper.AppData.context.SaveChanges();
 
-                    MessageBox.Show("Пользователь успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                    this.Close();
+                        MessageBox.Show("Пользователь успешно изменён", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        EF.Emploee addEmployee = new EF.Emploee();
+                        addEmployee.FName = txt_FName.Text;
+                        addEmployee.LName = txt_LName.Text;
+                        addEmployee.Phone = txt_Phone.Text;
+                        addEmployee.IDNameSpecialization = cmb_Spec.SelectedIndex + 2;
+                        addEmployee.Login = txt_Login.Text;
+                        addEmployee.Password = txt_Password.Password;
+
+                        ClassesHelper.AppData.context.Emploee.Add(addEmployee);
+                        ClassesHelper.AppData.context.SaveChanges();
+
+                        MessageBox.Show("Пользователь успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)

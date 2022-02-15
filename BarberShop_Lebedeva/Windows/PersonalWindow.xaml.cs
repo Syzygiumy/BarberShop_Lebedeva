@@ -1,7 +1,5 @@
-﻿using BarberShop_Lebedeva.Windows;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,15 +10,14 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BarberShop_Lebedeva.Pages
+namespace BarberShop_Lebedeva.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для PersonalPage.xaml
+    /// Логика взаимодействия для PersonalWindow.xaml
     /// </summary>
-    public partial class PersonalPage : Page
+    public partial class PersonalWindow : Window
     {
         List<EF.Emploee> listEmployee = new List<EF.Emploee>();
 
@@ -33,7 +30,7 @@ namespace BarberShop_Lebedeva.Pages
             "По специализации"
         };
 
-        public PersonalPage()
+        public PersonalWindow()
         {
             InitializeComponent();
             cmb_Sort.ItemsSource = listForSort;
@@ -99,11 +96,12 @@ namespace BarberShop_Lebedeva.Pages
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            this.Close();
         }
 
         private void lvEmployee_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Delete || e.Key == Key.Back)
+            if (e.Key == Key.Delete || e.Key == Key.Back)
             {
                 var resClick = MessageBox.Show($"Удалить пользователя {(lvEmployee.SelectedItem as EF.Emploee).LName}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 try
@@ -112,8 +110,8 @@ namespace BarberShop_Lebedeva.Pages
                     if (resClick == MessageBoxResult.Yes)
                     {
                         EF.Emploee userDel = new EF.Emploee();
-                        
-                        if(!(lvEmployee.SelectedItem is EF.Emploee))
+
+                        if (!(lvEmployee.SelectedItem is EF.Emploee))
                         {
                             MessageBox.Show("Запись не выбрана");
                             return;
@@ -123,7 +121,7 @@ namespace BarberShop_Lebedeva.Pages
                         ClassesHelper.AppData.context.SaveChanges();
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }

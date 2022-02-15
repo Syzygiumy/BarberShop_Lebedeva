@@ -1,4 +1,4 @@
-﻿using BarberShop_Lebedeva.Pages;
+﻿using BarberShop_Lebedeva.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,17 +28,19 @@ namespace BarberShop_Lebedeva
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PersonalPage personalPage = new PersonalPage();
-            
+
+            PersonalWindow personalWindow = new PersonalWindow();
+            personalWindow.Show();
+            this.Close();
             
         }
 
 
         private void btn_Client_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(new ClientPage());
-            Height = 450;
-            Width = 800;
+            ClientWindow clientWindow = new ClientWindow();
+            clientWindow.Show();
+            this.Close();
         }
     }
 }
