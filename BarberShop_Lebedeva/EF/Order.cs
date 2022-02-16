@@ -21,6 +21,7 @@ namespace BarberShop_Lebedeva.EF
         public System.DateTime Start { get; set; }
         public System.DateTime TheEnd { get; set; }
         public bool IsCompleted { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Emploee Emploee { get; set; }

@@ -15,22 +15,25 @@ using System.Windows.Shapes;
 namespace BarberShop_Lebedeva.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для PersonalWindow.xaml
+    /// Логика взаимодействия для OrderWindow.xaml
     /// </summary>
-    public partial class PersonalWindow : Window
+    public partial class OrderWindow : Window
     {
-        List<EF.Emploee> listEmployee = new List<EF.Emploee>();
+        List<EF.Order> listClient = new List<EF.Order>();
 
         List<string> listForSort = new List<string>()
         {
             "По умолчанию",
-            "По фамилии",
-            "По имени",
-            "По телефону",
-            "По специализации"
+            "По фамилии сотрудника",
+            "По фамилии клента",
+            "По названию услуги",
+            "По дате начала",
+            "По дате окончания",
+            "По статусу выполнения",
+            "По статусу удаления"
         };
 
-        public PersonalWindow()
+        public OrderWindow()
         {
             InitializeComponent();
             cmb_Sort.ItemsSource = listForSort;
@@ -40,47 +43,51 @@ namespace BarberShop_Lebedeva.Windows
 
         private void Filter()
         {
-            listEmployee = ClassesHelper.AppData.context.Emploee.ToList();
-            listEmployee = listEmployee.
+            listOrder = ClassesHelper.AppData.context.Order.ToList();
+            listOrder = listOrder.
                Where(i => i.LName.Contains(txt_Search.Text) || i.FName.Contains(txt_Search.Text) || i.Phone.Contains(txt_Search.Text)).ToList();
 
             switch (cmb_Sort.SelectedIndex)
             {
                 case 0:
-                    listEmployee = listEmployee.OrderBy(i => i.ID).ToList();
+                    listClient = listClient.OrderBy(i => i.ID).ToList();
                     break;
                 case 1:
-                    listEmployee = listEmployee.OrderBy(i => i.LName).ToList();
+                    listClient = listClient.OrderBy(i => i.LName).ToList();
                     break;
                 case 2:
-                    listEmployee = listEmployee.OrderBy(i => i.FName).ToList();
+                    listClient = listClient.OrderBy(i => i.FName).ToList();
                     break;
                 case 3:
-                    listEmployee = listEmployee.OrderBy(i => i.Phone).ToList();
+                    listClient = listClient.OrderBy(i => i.Phone).ToList();
                     break;
                 case 4:
-                    listEmployee = listEmployee.OrderBy(i => i.IDNameSpecialization).ToList();
+                    listClient = listClient.OrderBy(i => i.Email).ToList();
+                    break;
+                case 5:
+                    listClient = listClient.OrderBy(i => i.Gender).ToList();
                     break;
                 default:
-                    listEmployee = listEmployee.OrderBy(i => i.ID).ToList();
+                    listClient = listClient.OrderBy(i => i.ID).ToList();
                     break;
 
             }
 
-            if (listEmployee.Count == 0)
+            if (listOrder.Count == 0)
             {
                 MessageBox.Show("Записей нет");
             }
-            lvEmployee.ItemsSource = listEmployee;
+            lvOrder.ItemsSource = listOrder;
         }
 
-        private void btn_AddEmploee_Click(object sender, RoutedEventArgs e)
-        {
-            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow();
-            this.Opacity = 0.2;
-            addEmployeeWindow.ShowDialog();
-            this.Opacity = 1;
-        }
+
+        //private void btn_AddClient_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AddClientWindow addCleintWindow = new AddClientWindow();
+        //    this.Opacity = 0.2;
+        //    addCleintWindow.ShowDialog();
+        //    this.Opacity = 1;
+        //}
 
         private void txt_Search_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -99,25 +106,25 @@ namespace BarberShop_Lebedeva.Windows
             this.Close();
         }
 
-        private void lvEmployee_KeyUp(object sender, KeyEventArgs e)
+        private void lvClient_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete || e.Key == Key.Back)
             {
-                var resClick = MessageBox.Show($"Удалить пользователя {(lvEmployee.SelectedItem as EF.Emploee).LName}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                var resClick = MessageBox.Show($"Удалить пользователя {(lvOrder.SelectedItem as EF.Order).LName}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 try
                 {
 
                     if (resClick == MessageBoxResult.Yes)
                     {
-                        EF.Emploee userDel = new EF.Emploee();
+                        EF.Order userDel = new EF.Order();
 
-                        if (!(lvEmployee.SelectedItem is EF.Emploee))
+                        if (!(lvOrder.SelectedItem is EF.Order))
                         {
                             MessageBox.Show("Запись не выбрана");
                             return;
                         }
-                        userDel = (lvEmployee.SelectedItem as EF.Emploee);
-                        ClassesHelper.AppData.context.Emploee.Remove(userDel);
+                        userDel = (lvOrder.SelectedItem as EF.Order);
+                        ClassesHelper.AppData.context.Order.Remove(userDel);
                         ClassesHelper.AppData.context.SaveChanges();
                     }
                 }
@@ -129,14 +136,7 @@ namespace BarberShop_Lebedeva.Windows
                 MessageBox.Show($"Пользователь успешно удалён", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             Filter();
-        }
 
-        private void lvEmployee_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            EF.Emploee userEdit = lvEmployee.SelectedItem as EF.Emploee;
-            AddEmployeeWindow addEmployeeWindow = new AddEmployeeWindow(userEdit);
-            addEmployeeWindow.ShowDialog();
-            Filter();
         }
     }
 }

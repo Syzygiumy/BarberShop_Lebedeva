@@ -15,6 +15,7 @@
           <Property Name="Phone" Type="nchar" MaxLength="12" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="IDGender" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="Emploee">
           <Key>
@@ -27,6 +28,7 @@
           <Property Name="IDNameSpecialization" Type="int" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -46,6 +48,7 @@
           <Property Name="Start" Type="datetime" Nullable="false" />
           <Property Name="TheEnd" Type="datetime" Nullable="false" />
           <Property Name="IsCompleted" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -208,6 +211,7 @@
           <Property Name="IDGender" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Client" FromRole="Client" ToRole="Order" />
+          <Property Name="IsDeleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="Emploee">
           <Key>
@@ -222,6 +226,7 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Specialization" Relationship="Self.FK_Emploee_Specialization" FromRole="Emploee" ToRole="Specialization" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Emploee" FromRole="Emploee" ToRole="Order" />
+          <Property Name="IsDeleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -245,6 +250,7 @@
           <NavigationProperty Name="Client" Relationship="Self.FK_Order_Client" FromRole="Order" ToRole="Client" />
           <NavigationProperty Name="Emploee" Relationship="Self.FK_Order_Emploee" FromRole="Order" ToRole="Emploee" />
           <NavigationProperty Name="Service" Relationship="Self.FK_Order_Service" FromRole="Order" ToRole="Service" />
+          <Property Name="IsDeleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -412,6 +418,7 @@
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="BarberShop2Model.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="LName" ColumnName="LName" />
@@ -424,6 +431,7 @@
           <EntitySetMapping Name="Emploee">
             <EntityTypeMapping TypeName="BarberShop2Model.Emploee">
               <MappingFragment StoreEntitySet="Emploee">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="LName" ColumnName="LName" />
@@ -445,6 +453,7 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="BarberShop2Model.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="IDClient" ColumnName="IDClient" />
                 <ScalarProperty Name="IDEmploee" ColumnName="IDEmploee" />
