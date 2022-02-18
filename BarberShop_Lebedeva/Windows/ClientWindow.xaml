@@ -47,7 +47,8 @@
 
         <ListView x:Name="lvClient"
                    Grid.Row="3"
-                  KeyUp="lvClient_KeyUp">
+                  KeyUp="lvClient_KeyUp"
+                  MouseDoubleClick="lvClient_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}"/>

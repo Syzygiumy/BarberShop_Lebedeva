@@ -51,13 +51,12 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding ID}"/>
-                    <GridViewColumn Header="Фамилия сотрудника" Width="100" DisplayMemberBinding="{Binding Emploee.LName}"/>
-                    <GridViewColumn Header="Фамилия клиента" Width="100" DisplayMemberBinding="{Binding Client.LName}"/>
-                    <GridViewColumn Header="Название услуги" Width="100" DisplayMemberBinding="{Binding Service.Title}"/>
+                    <GridViewColumn Header="Фамилия сотрудника" Width="125" DisplayMemberBinding="{Binding Emploee.LName}"/>
+                    <GridViewColumn Header="Фамилия клиента" Width="105" DisplayMemberBinding="{Binding Client.LName}"/>
+                    <GridViewColumn Header="Название услуги" Width="105" DisplayMemberBinding="{Binding Service.Title}"/>
                     <GridViewColumn Header="Начало оказания услуги" Width="150" DisplayMemberBinding="{Binding Start}"/>
                     <GridViewColumn Header="Конец оказания услуги" Width="150" DisplayMemberBinding="{Binding TheEnd}"/>
-                    <GridViewColumn Header="Статус выполнения" Width="70" DisplayMemberBinding="{Binding IsCompleted}"/>
-                    <GridViewColumn Header="Удалён/Не удалён" Width="70" DisplayMemberBinding="{Binding IsDeleted}"/>
+                    <GridViewColumn Header="Статус выполнения" Width="115" DisplayMemberBinding="{Binding IsCompleted}"/>
                 </GridView>
             </ListView.View>
         </ListView>

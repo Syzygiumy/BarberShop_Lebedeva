@@ -41,9 +41,9 @@ namespace BarberShop_Lebedeva.Windows
 
         private void Filter()
         {
-            listClient = ClassesHelper.AppData.context.Client.ToList();
+            listClient = ClassesHelper.AppData.context.Client.ToList().Where(i => i.IsDeleted == false).ToList();
             listClient = listClient.
-               Where(i => i.LName.Contains(txt_Search.Text) || i.FName.Contains(txt_Search.Text) || i.Phone.Contains(txt_Search.Text)).ToList();
+               Where(i => i.LName.Contains(txt_Search.Text) || i.FName.Contains(txt_Search.Text) || i.Phone.Contains(txt_Search.Text) || i.Email.Contains(txt_Search.Text)).ToList();
 
             switch (cmb_Sort.SelectedIndex)
             {
@@ -63,7 +63,7 @@ namespace BarberShop_Lebedeva.Windows
                     listClient = listClient.OrderBy(i => i.Email).ToList();
                     break;
                 case 5:
-                    listClient = listClient.OrderBy(i => i.Gender).ToList();
+                    listClient = listClient.OrderBy(i => i.IDGender).ToList();
                     break;
                 default:
                     listClient = listClient.OrderBy(i => i.ID).ToList();
@@ -133,6 +133,14 @@ namespace BarberShop_Lebedeva.Windows
 
                 MessageBox.Show($"Пользователь успешно удалён", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            Filter();
+        }
+
+        private void lvClient_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            EF.Client userEdit = lvClient.SelectedItem as EF.Client;
+            AddClientWindow addClientWindow = new AddClientWindow(userEdit);
+            addClientWindow.ShowDialog();
             Filter();
         }
     }

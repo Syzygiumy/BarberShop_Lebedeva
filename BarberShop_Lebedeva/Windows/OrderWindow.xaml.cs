@@ -19,7 +19,7 @@ namespace BarberShop_Lebedeva.Windows
     /// </summary>
     public partial class OrderWindow : Window
     {
-        List<EF.Order> listClient = new List<EF.Order>();
+        List<EF.Order> listOrder = new List<EF.Order>();
 
         List<string> listForSort = new List<string>()
         {
@@ -29,8 +29,7 @@ namespace BarberShop_Lebedeva.Windows
             "По названию услуги",
             "По дате начала",
             "По дате окончания",
-            "По статусу выполнения",
-            "По статусу удаления"
+            "По статусу выполнения"
         };
 
         public OrderWindow()
@@ -43,32 +42,35 @@ namespace BarberShop_Lebedeva.Windows
 
         private void Filter()
         {
-            listOrder = ClassesHelper.AppData.context.Order.ToList();
+            listOrder = ClassesHelper.AppData.context.Order.ToList().Where(i => i.IsDeleted == false).ToList();
             listOrder = listOrder.
-               Where(i => i.LName.Contains(txt_Search.Text) || i.FName.Contains(txt_Search.Text) || i.Phone.Contains(txt_Search.Text)).ToList();
+               Where(i => i.Emploee.LName.Contains(txt_Search.Text) || i.Client.LName.Contains(txt_Search.Text) || i.Service.Title.Contains(txt_Search.Text)).ToList();
 
             switch (cmb_Sort.SelectedIndex)
             {
                 case 0:
-                    listClient = listClient.OrderBy(i => i.ID).ToList();
+                    listOrder = listOrder.OrderBy(i => i.ID).ToList();
                     break;
                 case 1:
-                    listClient = listClient.OrderBy(i => i.LName).ToList();
+                    listOrder = listOrder.OrderBy(i => i.Emploee.LName).ToList();
                     break;
                 case 2:
-                    listClient = listClient.OrderBy(i => i.FName).ToList();
+                    listOrder = listOrder.OrderBy(i => i.Client.LName).ToList();
                     break;
                 case 3:
-                    listClient = listClient.OrderBy(i => i.Phone).ToList();
+                    listOrder = listOrder.OrderBy(i => i.Service.Title).ToList();
                     break;
                 case 4:
-                    listClient = listClient.OrderBy(i => i.Email).ToList();
+                    listOrder = listOrder.OrderBy(i => i.Start).ToList();
                     break;
                 case 5:
-                    listClient = listClient.OrderBy(i => i.Gender).ToList();
+                    listOrder = listOrder.OrderBy(i => i.TheEnd).ToList();
+                    break;
+                case 6:
+                    listOrder = listOrder.OrderBy(i => i.IsCompleted).ToList();
                     break;
                 default:
-                    listClient = listClient.OrderBy(i => i.ID).ToList();
+                    listOrder = listOrder.OrderBy(i => i.ID).ToList();
                     break;
 
             }
@@ -106,11 +108,11 @@ namespace BarberShop_Lebedeva.Windows
             this.Close();
         }
 
-        private void lvClient_KeyUp(object sender, KeyEventArgs e)
+        private void lvOrder_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete || e.Key == Key.Back)
             {
-                var resClick = MessageBox.Show($"Удалить пользователя {(lvOrder.SelectedItem as EF.Order).LName}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                var resClick = MessageBox.Show($"Удалить заказ {(lvOrder.SelectedItem as EF.Order).ID}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 try
                 {
 
@@ -133,7 +135,7 @@ namespace BarberShop_Lebedeva.Windows
                     MessageBox.Show(ex.Message);
                 }
 
-                MessageBox.Show($"Пользователь успешно удалён", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Заказ успешно удалён", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             Filter();
 

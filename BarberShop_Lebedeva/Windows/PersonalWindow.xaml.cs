@@ -40,7 +40,7 @@ namespace BarberShop_Lebedeva.Windows
 
         private void Filter()
         {
-            listEmployee = ClassesHelper.AppData.context.Emploee.ToList();
+            listEmployee = ClassesHelper.AppData.context.Emploee.ToList().Where(i => i.IsDeleted == false).ToList();
             listEmployee = listEmployee.
                Where(i => i.LName.Contains(txt_Search.Text) || i.FName.Contains(txt_Search.Text) || i.Phone.Contains(txt_Search.Text)).ToList();
 
