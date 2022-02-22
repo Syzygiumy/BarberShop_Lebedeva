@@ -82,15 +82,6 @@ namespace BarberShop_Lebedeva.Windows
             lvOrder.ItemsSource = listOrder;
         }
 
-
-        //private void btn_AddClient_Click(object sender, RoutedEventArgs e)
-        //{
-        //    AddClientWindow addCleintWindow = new AddClientWindow();
-        //    this.Opacity = 0.2;
-        //    addCleintWindow.ShowDialog();
-        //    this.Opacity = 1;
-        //}
-
         private void txt_Search_TextChanged(object sender, TextChangedEventArgs e)
         {
             Filter();
@@ -139,6 +130,14 @@ namespace BarberShop_Lebedeva.Windows
             }
             Filter();
 
+        }
+
+        private void btn_AddOrder_Click(object sender, RoutedEventArgs e)
+        {
+            AddOrderWindow addOrderWindow = new AddOrderWindow();
+            this.Opacity = 0.2;
+            addOrderWindow.ShowDialog();
+            this.Opacity = 1;
         }
     }
 }

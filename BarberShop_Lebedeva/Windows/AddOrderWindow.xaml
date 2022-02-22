@@ -14,8 +14,8 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="65*"/>
-            <ColumnDefinition Width="109*"/>
+            <ColumnDefinition Width="305*"/>
+            <ColumnDefinition Width="491*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
@@ -24,52 +24,37 @@
             <RowDefinition Height="40*"/>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
+
         </Grid.RowDefinitions>
 
         <!--Левый столбец-->
-        <TextBlock Text="Добавление клиента"
+        <TextBlock Text="Добавление заказа"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontSize="30"
                    Foreground="#FF1A296B"
                    Grid.ColumnSpan="2"
                    x:Name="tb_Title"/>
+
         <TextBlock Grid.Row="1"
                    HorizontalAlignment="Right"
-                   Text="Имя:"
+                   Text="Фамилия клиента:"
                    Foreground="#FF1A296B"
                    VerticalAlignment="Center"
-                   FontSize="30"
-                   Margin="0 0 10 0"/>
+                   FontSize="30"/>
+
         <TextBlock Grid.Row="2"
                    HorizontalAlignment="Right"
-                   Text="Фамилия:"
+                   Text="Фамилия работника:"
                    VerticalAlignment="Center"
                    FontSize="30"
-                   Margin="0 0 10 0"
                    Foreground="#FF1A296B"/>
+
         <TextBlock Grid.Row="3"
                    HorizontalAlignment="Right"
-                   Text="Телефон:"
+                   Text="Услуга:"
                    VerticalAlignment="Center"
-                   FontSize="30"
-                   Margin="0 0 10 0"
-                   Foreground="#FF1A296B"/>
-        <TextBlock Grid.Row="4"
-                   HorizontalAlignment="Right"
-                   Text="Email:"
-                   VerticalAlignment="Center"
-                   FontSize="30"
-                   Margin="0 0 10 0"
-                   Foreground="#FF1A296B"/>
-        <TextBlock Grid.Row="5"
-                   HorizontalAlignment="Right"
-                   Text="Пол:"
-                   VerticalAlignment="Center"
-                   FontSize="30"
-                   Margin="0 0 10 0"
-                   Foreground="#FF1A296B"/>
+                   FontSize="30"/>
 
         <!--Правый столбец-->
         <TextBox Grid.Row="1"
@@ -78,13 +63,10 @@
                  VerticalAlignment="Center"
                  Width="350"
                  Height="40"
-                 Margin="10 0 0 0"
+                 Margin="10.111,15.333,0,15.333"
                  FontSize="20"
-                 x:Name="txt_FName"
-                 MaxLength="50"
-                 PreviewTextInput="txt_FName_PreviewTextInput"
-                 PreviewKeyDown="txt_FName_PreviewKeyDown"
-                 PreviewMouseRightButtonUp="txt_FName_PreviewMouseRightButtonUp"/>
+                 x:Name="txt_LNameClient"
+                 MaxLength="50"/>
 
         <TextBox Grid.Row="2"
                  Grid.Column="1"
@@ -92,55 +74,23 @@
                  VerticalAlignment="Center"
                  Width="350"
                  Height="40"
-                 Margin="10 0 0 0"
+                 Margin="10.111,15.667,0,14.556"
                  FontSize="20"
-                 x:Name="txt_LName"
-                 MaxLength="50"
-                 PreviewTextInput="txt_LName_PreviewTextInput"
-                 PreviewKeyDown="txt_LName_PreviewKeyDown"
-                 PreviewMouseRightButtonUp="txt_LName_PreviewMouseRightButtonUp"/>
+                 x:Name="txt_LNamePersonal"
+                 MaxLength="50"/>
 
-        <TextBox Grid.Row="3"
+        <ComboBox Grid.Row="3"
                  Grid.Column="1"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Center"
                  Width="350"
                  Height="40"
-                 Margin="10 0 0 0"
+                 Margin="10.111,15.444,0,15.222"
                  FontSize="20"
-                 x:Name="txt_Phone"
-                 MaxLength="12"
-                 PreviewKeyDown="txt_Phone_PreviewKeyDown"
-                 PreviewTextInput="txt_Phone_PreviewTextInput"
-                 PreviewMouseRightButtonUp="txt_Phone_PreviewMouseRightButtonUp"/>
-
-        <TextBox Grid.Row="4"
-                 Grid.Column="1"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Center"
-                 Width="350"
-                 Height="40"
-                 Margin="10 0 0 0"
-                 FontSize="20"
-                 x:Name="txt_Email"
-                 PreviewKeyDown="txt_Email_PreviewKeyDown"
-                 PreviewTextInput="txt_Email_PreviewTextInput"
-                 PreviewMouseRightButtonUp="txt_Email_PreviewMouseRightButtonUp" 
-                 />
-
-        <ComboBox Grid.Row="5"
-                 Grid.Column="1"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Center"
-                 Width="350"
-                 Height="40"
-                 Margin="10 0 0 0"
-                 FontSize="20"
-                 x:Name="cmb_Gender"
-                 />
+                 x:Name="cmb_TitleName"/>
 
         <Button Grid.ColumnSpan="2"
-                Grid.Row="9"
+                Grid.Row="5"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Width="250"
@@ -149,7 +99,7 @@
                 FontSize="25" 
                 Background="#FFCEDCFF"
                 Foreground="#FF1A296B"
-                x:Name="btn_AddClient"
-                Click="btn_AddClient_Click"/>
+                x:Name="btn_AddOrder"
+                Click="btn_AddOrder_Click"/>
     </Grid>
 </Window>

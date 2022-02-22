@@ -38,8 +38,8 @@ namespace BarberShop_Lebedeva.Windows
         public AddClientWindow(EF.Client client)
         {
             InitializeComponent();
-            cmb_Gender.ItemsSource = ClassesHelper.AppData.context.Specialization.ToList();
-            cmb_Gender.DisplayMemberPath = "NameSpecialization";
+            cmb_Gender.ItemsSource = ClassesHelper.AppData.context.Gender.ToList();
+            cmb_Gender.DisplayMemberPath = "NameGender";
             cmb_Gender.SelectedIndex = Convert.ToInt32(client.IDGender - 1);
 
             txt_FName.Text = client.FName;
