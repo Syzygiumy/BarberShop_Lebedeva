@@ -72,7 +72,7 @@ namespace BarberShop_Lebedeva.Windows
                 return;
             }
 
-            var resClick = MessageBox.Show("Вы уверены?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var resClick = MessageBox.Show("Вы уверены?", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if(resClick == MessageBoxResult.Yes)
             {
