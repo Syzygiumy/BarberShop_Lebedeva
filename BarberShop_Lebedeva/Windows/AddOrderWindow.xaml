@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BarberShop_Lebedeva.Windows"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="AddOrderWindow" Height="450" Width="800">
     <Grid>
         <Grid.Background>
@@ -57,7 +58,7 @@
                    FontSize="30"/>
 
         <!--Правый столбец-->
-        <TextBox Grid.Row="1"
+        <ComboBox Grid.Row="1"
                  Grid.Column="1"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Center"
@@ -65,10 +66,9 @@
                  Height="40"
                  Margin="10.111,15.333,0,15.333"
                  FontSize="20"
-                 x:Name="txt_LNameClient"
-                 MaxLength="50"/>
+                 x:Name="cmb_LNameClient"/>
 
-        <TextBox Grid.Row="2"
+        <ComboBox Grid.Row="2"
                  Grid.Column="1"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Center"
@@ -76,8 +76,7 @@
                  Height="40"
                  Margin="10.111,15.667,0,14.556"
                  FontSize="20"
-                 x:Name="txt_LNamePersonal"
-                 MaxLength="50"/>
+                 x:Name="cmb_LNamePersonal"/>
 
         <ComboBox Grid.Row="3"
                  Grid.Column="1"
