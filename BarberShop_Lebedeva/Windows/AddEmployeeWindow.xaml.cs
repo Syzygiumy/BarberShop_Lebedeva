@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.IO;
 
 namespace BarberShop_Lebedeva.Windows
 {
@@ -22,6 +24,7 @@ namespace BarberShop_Lebedeva.Windows
     public partial class AddEmployeeWindow : Window
     {
         EF.Emploee editEmploee = new EF.Emploee();
+        private string pathPhoto = null;
 
         bool isEdit = true;
         public AddEmployeeWindow()
@@ -50,6 +53,22 @@ namespace BarberShop_Lebedeva.Windows
             tb_Title.Text = "Изменение данных работника";
 
             btn_AddEmlp.Content = "Изменить";
+
+            // вывод изображения из БД в Image
+            if (emploee.Photo != null)
+            {
+                using (MemoryStream stream = new MemoryStream(emploee.Photo))
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                    bitmapImage.StreamSource = stream;
+                    bitmapImage.EndInit();
+                    photoUser.Source = bitmapImage;
+                }
+
+            }
 
             editEmploee = emploee;
             isEdit = true;
@@ -116,7 +135,7 @@ namespace BarberShop_Lebedeva.Windows
 
             var resClick = MessageBox.Show("Вы уверены?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            try
+            //try
             {
                 if (resClick == MessageBoxResult.Yes)
             {
@@ -132,6 +151,11 @@ namespace BarberShop_Lebedeva.Windows
 
                         ClassesHelper.AppData.context.SaveChanges();
 
+                        if (pathPhoto != null)
+                        {
+                            editEmployee.Photo = File.ReadAllBytes(pathPhoto);
+                        }
+
                         MessageBox.Show("Пользователь успешно изменён", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                         this.Close();
                     }
@@ -144,19 +168,25 @@ namespace BarberShop_Lebedeva.Windows
                         addEmployee.IDNameSpecialization = cmb_Spec.SelectedIndex + 2;
                         addEmployee.Login = txt_Login.Text;
                         addEmployee.Password = txt_Password.Password;
+                        addEmployee.IsDeleted = false;
 
                         ClassesHelper.AppData.context.Emploee.Add(addEmployee);
                         ClassesHelper.AppData.context.SaveChanges();
+
+                        if (pathPhoto != null)
+                        {
+                            editEmploee.Photo = File.ReadAllBytes(pathPhoto);
+                        }
 
                         MessageBox.Show("Пользователь успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                         this.Close();
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message.ToString());
+            //}
         }
         //Запреты, имя:
         private void txt_FName_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -313,6 +343,14 @@ namespace BarberShop_Lebedeva.Windows
             }
         }
 
-
+        private void btnChoosePhoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            if (openFile.ShowDialog() == true)
+            {
+                photoUser.Source = new BitmapImage(new Uri(openFile.FileName));
+                pathPhoto = openFile.FileName;
+            }
+        }
     }
 }

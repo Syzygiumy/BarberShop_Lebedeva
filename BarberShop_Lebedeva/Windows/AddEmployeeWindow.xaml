@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BarberShop_Lebedeva.Windows"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AddEmployeeWindow" Height="450" Width="700">
+        Title="AddEmployeeWindow" Height="750" Width="700">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -19,17 +19,21 @@
             <ColumnDefinition Width="109*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
+
         <!--Левый столбец-->
         <TextBlock Text="Добавление сотрудника"
                    VerticalAlignment="Center"
@@ -181,7 +185,7 @@
                      PreviewKeyDown="txt_RepeatPassw_PreviewKeyDown"/>
         
         <Button Grid.ColumnSpan="2"
-                Grid.Row="9"
+                Grid.Row="12"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Width="250"
@@ -191,6 +195,38 @@
                 Background="#FFCEDCFF"
                 Foreground="#FF1A296B"
                 x:Name="btn_AddEmlp" Click="btn_AddEmlp_Click"/>
+
+        <!-- Область для фото -->
+
+        <Border Grid.Column="0"
+                Grid.Row="8"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="3"
+                Width="150"
+                Height="150"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                BorderThickness="2"
+                BorderBrush="#FF77A1FF"
+                CornerRadius="20"
+                Background="#FFCEE2FF">
+
+            <Image x:Name="photoUser"/>
+
+        </Border>
+
+        <Button x:Name="btnChoosePhoto"
+                Grid.Column="0"
+                Grid.Row="11"
+                Grid.ColumnSpan="2"
+                Width="150"
+                Height="40"
+                Content="Выбрать фото"
+                FontSize="18"
+                BorderThickness="0"
+                Background="#FFCEDCFF"
+                Foreground="#FF1A296B"
+                Click="btnChoosePhoto_Click"/>
 
     </Grid>
 </Window>
