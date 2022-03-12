@@ -238,6 +238,7 @@ namespace BarberShop_Lebedeva.Windows
                         addClient.Phone = txt_Phone.Text;
                         addClient.Email = txt_Email.Text;
                         addClient.IDGender = cmb_Gender.SelectedIndex + 1;
+                        addClient.IsDeleted = false;
 
 
                         ClassesHelper.AppData.context.Client.Add(addClient);

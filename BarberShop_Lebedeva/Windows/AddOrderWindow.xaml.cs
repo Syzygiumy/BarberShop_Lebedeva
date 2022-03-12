@@ -55,7 +55,8 @@ namespace BarberShop_Lebedeva.Windows
                 addorder.IDEmploee = cmb_LNamePersonal.SelectedIndex + 1;
                 addorder.IDService = cmb_TitleName.SelectedIndex + 1;
                 addorder.Start = date;
-                addorder.TheEnd = date.AddHours(5);
+                addorder.TheEnd = date.AddMinutes(30);
+                addorder.IsDeleted = false;
 
                 ClassesHelper.AppData.context.Order.Add(addorder);
                 ClassesHelper.AppData.context.SaveChanges();

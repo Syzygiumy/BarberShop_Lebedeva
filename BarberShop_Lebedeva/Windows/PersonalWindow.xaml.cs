@@ -80,6 +80,7 @@ namespace BarberShop_Lebedeva.Windows
             this.Opacity = 0.2;
             addEmployeeWindow.ShowDialog();
             this.Opacity = 1;
+            Filter();
         }
 
         private void txt_Search_TextChanged(object sender, TextChangedEventArgs e)

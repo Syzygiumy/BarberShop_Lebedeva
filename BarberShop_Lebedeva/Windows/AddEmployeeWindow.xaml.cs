@@ -141,20 +141,22 @@ namespace BarberShop_Lebedeva.Windows
             {
                     if (isEdit)
                     {
-                        EF.Emploee editEmployee = new EF.Emploee();
-                        editEmployee.FName = txt_FName.Text;
-                        editEmployee.LName = txt_LName.Text;
-                        editEmployee.Phone = txt_Phone.Text;
-                        editEmployee.IDNameSpecialization = cmb_Spec.SelectedIndex + 2;
-                        editEmployee.Login = txt_Login.Text;
-                        editEmployee.Password = txt_Password.Password;
+
+                        editEmploee.FName = txt_FName.Text;
+                        editEmploee.LName = txt_LName.Text;
+                        editEmploee.Phone = txt_Phone.Text;
+                        editEmploee.IDNameSpecialization = (cmb_Spec.SelectedItem as EF.Specialization).ID;
+                        editEmploee.Login = txt_Login.Text;
+                        editEmploee.Password = txt_Password.Password; 
+                        
+                        if (pathPhoto != null)
+                        {
+                            editEmploee.Photo = File.ReadAllBytes(pathPhoto);
+                        }
 
                         ClassesHelper.AppData.context.SaveChanges();
 
-                        if (pathPhoto != null)
-                        {
-                            editEmployee.Photo = File.ReadAllBytes(pathPhoto);
-                        }
+                       
 
                         MessageBox.Show("Пользователь успешно изменён", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                         this.Close();
@@ -170,13 +172,12 @@ namespace BarberShop_Lebedeva.Windows
                         addEmployee.Password = txt_Password.Password;
                         addEmployee.IsDeleted = false;
 
-                        ClassesHelper.AppData.context.Emploee.Add(addEmployee);
-                        ClassesHelper.AppData.context.SaveChanges();
-
                         if (pathPhoto != null)
                         {
-                            editEmploee.Photo = File.ReadAllBytes(pathPhoto);
+                            addEmployee.Photo = File.ReadAllBytes(pathPhoto);
                         }
+                        ClassesHelper.AppData.context.Emploee.Add(addEmployee);
+                        ClassesHelper.AppData.context.SaveChanges();
 
                         MessageBox.Show("Пользователь успешно добавлен", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                         this.Close();
