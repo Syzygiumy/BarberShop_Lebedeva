@@ -31,7 +31,7 @@
                 <Image Grid.Column="0"
                        Grid.Row="0"
                        Grid.RowSpan="3"
-                       Source="C:\Users\IMac2\Source\Repos\BarberShop_Lebedeva1\BarberShop_Lebedeva\Images\adm (2).png"/>
+                       Source="C:\Users\IMac2\Source\Repos\BarberShop_Lebedeva1\BarberShop_Lebedeva\Images\1200px-User_icon_2.svg.png" />
 
                 <!-- 1 -->
                 <TextBlock Text="Фамилия:"
@@ -86,7 +86,7 @@
 
                 <!-- 3 -->
 
-                <TextBlock Text="Специализация:"
+                <TextBlock Text="Email:"
                            Grid.Column="3"
                            Grid.Row="0"
                            VerticalAlignment="Center"
@@ -94,7 +94,7 @@
                            Margin="0 0 10 0"
                            FontSize="20"/>
 
-                <TextBlock Text="Логин:"
+                <TextBlock Text="Пол:"
                            Grid.Column="3"
                            Grid.Row="1"
                            VerticalAlignment="Center"
@@ -102,17 +102,11 @@
                            Margin="0 0 10 0"
                            FontSize="20"/>
 
-                <TextBlock Text="Пароль:"
-                           Grid.Column="3"
-                           Grid.Row="2"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Right"
-                           Margin="0 0 10 0"
-                           FontSize="20"/>
+
 
                 <!-- 4 -->
 
-                <TextBlock Text="Специализация1"
+                <TextBlock Text="Email1"
                            Grid.Column="4"
                            Grid.Row="0"
                            VerticalAlignment="Center"
@@ -120,17 +114,9 @@
                            Margin="0 0 10 0"
                            FontSize="20"/>
 
-                <TextBlock Text="Логин1"
+                <TextBlock Text="Пол1"
                            Grid.Column="4"
                            Grid.Row="1"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Left"
-                           Margin="0 0 10 0"
-                           FontSize="20"/>
-
-                <TextBlock Text="Пароль1"
-                           Grid.Column="4"
-                           Grid.Row="2"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Left"
                            Margin="0 0 10 0"

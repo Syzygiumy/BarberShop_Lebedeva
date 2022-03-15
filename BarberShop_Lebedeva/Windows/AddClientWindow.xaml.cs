@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BarberShop_Lebedeva.ClassesHelper;
 using System.Text.RegularExpressions;
+using Microsoft.Win32;
+using System.IO;
 
 namespace BarberShop_Lebedeva.Windows
 {
@@ -22,6 +24,7 @@ namespace BarberShop_Lebedeva.Windows
     public partial class AddClientWindow : Window
     {
         EF.Client editClient = new EF.Client();
+        private string pathPhoto = null;
 
         bool isEdit = true;
         public AddClientWindow()
@@ -50,6 +53,22 @@ namespace BarberShop_Lebedeva.Windows
             tb_Title.Text = "Изменение данных клиента";
 
             btn_AddClient.Content = "Изменить";
+
+            // вывод изображения из БД в Image
+            if (client.Photo != null)
+            {
+                using (MemoryStream stream = new MemoryStream(client.Photo))
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                    bitmapImage.StreamSource = stream;
+                    bitmapImage.EndInit();
+                    photoUser.Source = bitmapImage;
+                }
+
+            }
 
             editClient = client;
             isEdit = true;
@@ -218,12 +237,17 @@ namespace BarberShop_Lebedeva.Windows
                 {
                     if (isEdit)
                     {
-                        EF.Client addClient = new EF.Client();
-                        addClient.FName = txt_FName.Text;
-                        addClient.LName = txt_LName.Text;
-                        addClient.Phone = txt_Phone.Text;
-                        addClient.Email = txt_Email.Text;
-                        addClient.IDGender = cmb_Gender.SelectedIndex + 1;
+                        EF.Client editClient = new EF.Client();
+                        editClient.FName = txt_FName.Text;
+                        editClient.LName = txt_LName.Text;
+                        editClient.Phone = txt_Phone.Text;
+                        editClient.Email = txt_Email.Text;
+                        editClient.IDGender = cmb_Gender.SelectedIndex + 1;
+
+                        if (pathPhoto != null)
+                        {
+                            editClient.Photo = File.ReadAllBytes(pathPhoto);
+                        }
 
                         ClassesHelper.AppData.context.SaveChanges();
 
@@ -240,6 +264,10 @@ namespace BarberShop_Lebedeva.Windows
                         addClient.IDGender = cmb_Gender.SelectedIndex + 1;
                         addClient.IsDeleted = false;
 
+                        if (pathPhoto != null)
+                        {
+                            addClient.Photo = File.ReadAllBytes(pathPhoto);
+                        }
 
                         ClassesHelper.AppData.context.Client.Add(addClient);
                         ClassesHelper.AppData.context.SaveChanges();
@@ -257,5 +285,15 @@ namespace BarberShop_Lebedeva.Windows
 
 
 }
+
+        private void btnChoosePhoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            if (openFile.ShowDialog() == true)
+            {
+                photoUser.Source = new BitmapImage(new Uri(openFile.FileName));
+                pathPhoto = openFile.FileName;
+            }
+        }
     }
 }

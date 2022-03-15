@@ -16,6 +16,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="IDGender" Type="int" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Emploee">
           <Key>
@@ -283,6 +284,7 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Gender" Relationship="BarberShop2Model.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
           <NavigationProperty Name="Order" Relationship="BarberShop2Model.FK_Order_Client" FromRole="Client" ToRole="Order" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Emploee">
           <Key>
@@ -444,6 +446,7 @@
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="BarberShop2Model.Client">
               <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IDGender" ColumnName="IDGender" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

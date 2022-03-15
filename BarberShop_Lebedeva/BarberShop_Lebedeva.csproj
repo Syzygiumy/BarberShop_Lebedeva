@@ -66,6 +66,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ClassesHelper\ClassReports.cs" />
     <Compile Include="Windows\AddOrderWindow.xaml.cs">
       <DependentUpon>AddOrderWindow.xaml</DependentUpon>
     </Compile>
@@ -236,6 +237,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\1200px-User_icon_2.svg.png" />
     <Resource Include="Images\adm %282%29.png" />
     <Resource Include="Images\new-employee-icon-people-transparent-background-employee-icon-11553428881fb5mqdvota.png" />
   </ItemGroup>

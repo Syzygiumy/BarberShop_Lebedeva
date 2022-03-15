@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BarberShop_Lebedeva.Windows"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AddClientWindow" Height="450" Width="700">
+        Title="AddClientWindow" Height="650" Width="650">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -15,10 +15,14 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="55*"/>
             <ColumnDefinition Width="109*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="40*"/>
             <RowDefinition Height="40*"/>
@@ -141,7 +145,7 @@
                  />
 
         <Button Grid.ColumnSpan="2"
-                Grid.Row="9"
+                Grid.Row="10"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Width="250"
@@ -152,5 +156,38 @@
                 Foreground="#FF1A296B"
                 x:Name="btn_AddClient"
                 Click="btn_AddClient_Click"/>
+
+        <!-- Область для фото -->
+
+        <Border Grid.Column="0"
+                Grid.Row="6"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="3"
+                Width="150"
+                Height="150"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                BorderThickness="2"
+                BorderBrush="#FF77A1FF"
+                CornerRadius="20"
+                Background="#FFCEE2FF">
+
+            <Image x:Name="photoUser"/>
+
+        </Border>
+
+        <Button x:Name="btnChoosePhoto"
+                Grid.Column="0"
+                Grid.Row="9"
+                Grid.ColumnSpan="2"
+                Width="150"
+                Height="40"
+                Content="Выбрать фото"
+                FontSize="18"
+                BorderThickness="0"
+                Background="#FFCEDCFF"
+                Foreground="#FF1A296B"
+                Click="btnChoosePhoto_Click"/>
+
     </Grid>
 </Window>
