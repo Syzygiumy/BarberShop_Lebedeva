@@ -1,0 +1,94 @@
+﻿<Window x:Class="BarberShop_Lebedeva.Windows.AddServiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BarberShop_Lebedeva.Windows"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="AddServiceWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFE2E8FF" Offset="0"/>
+                <GradientStop Color="#FF7590FB" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="305*"/>
+            <ColumnDefinition Width="491*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+
+        <!--Левый столбец-->
+        <TextBlock Text="Добавление услуги"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="30"
+                   Foreground="#FF1A296B"
+                   Grid.ColumnSpan="2"
+                   x:Name="tb_Title"/>
+
+        <TextBlock Grid.Row="1"
+                   HorizontalAlignment="Right"
+                   Text="Название услуги:"
+                   Foreground="#FF1A296B"
+                   VerticalAlignment="Center"
+                   FontSize="30"/>
+
+        <TextBlock Grid.Row="2"
+                   HorizontalAlignment="Right"
+                   Text="Стоимость услуги:"
+                   VerticalAlignment="Center"
+                   FontSize="30"
+                   Foreground="#FF1A296B"/>
+
+        <!--Правый столбец-->
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 Width="350"
+                 Height="40"
+                 Margin="10.111,20,0,15.333"
+                 FontSize="20"
+                 MaxLength="50"
+                 x:Name="txt_TitleService"
+                 PreviewTextInput="txt_TitleService_PreviewTextInput"
+                 PreviewKeyDown="txt_TitleService_PreviewKeyDown"
+                 PreviewMouseRightButtonUp="txt_TitleService_PreviewMouseRightButtonUp"/>
+
+        <TextBox Grid.Row="2"
+                 Grid.Column="1"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 Width="350"
+                 Height="40"
+                 Margin="10.111,20,0,14.556"
+                 FontSize="20"
+                 MaxLength="8"
+                 x:Name="txt_CostService"
+                 PreviewKeyDown="txt_CostService_PreviewKeyDown"
+                 PreviewTextInput="txt_CostService_PreviewTextInput"
+                 PreviewMouseLeftButtonUp="txt_CostService_PreviewMouseLeftButtonUp"/>
+
+
+        <Button Grid.ColumnSpan="2"
+                Grid.Row="5"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Width="250"
+                Height="40"
+                Content="Добавить"
+                FontSize="25" 
+                Background="#FFCEDCFF"
+                Foreground="#FF1A296B"
+                x:Name="btn_AddService"
+                Click="btn_AddService_Click"/>
+    </Grid>
+</Window>

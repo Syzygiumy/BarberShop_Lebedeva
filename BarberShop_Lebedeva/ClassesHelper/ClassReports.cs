@@ -8,5 +8,6 @@ namespace BarberShop_Lebedeva.ClassesHelper
 {
     class ClassReports
     {
+
     }
 }
