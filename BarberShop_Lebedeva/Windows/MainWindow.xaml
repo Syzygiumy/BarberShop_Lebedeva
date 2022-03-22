@@ -31,7 +31,7 @@
                 Content="Список сотрудников"
                 FontSize="20" 
                 Background="#FFCEDCFF"
-                Foreground="#FF1A296B" Margin="0,-220,0,0" Click="Button_Click"/>
+                Foreground="#FF1A296B" Margin="0,-280,0,0" Click="Button_Click"/>
         
         <Button Grid.Row="1"
                 Width="200"
@@ -40,7 +40,7 @@
                 FontSize="20" 
                 Background="#FFCEDCFF"
                 Foreground="#FF1A296B" x:Name="btn_Client"
-                Click="btn_Client_Click" Margin="0,-70,0,0"/>
+                Click="btn_Client_Click" Margin="0,-150,0,0"/>
 
         <Button Grid.Row="1"
                 Width="200"
@@ -50,7 +50,7 @@
                 Background="#FFCEDCFF"
                 Foreground="#FF1A296B" 
                 x:Name="btn_Order"
-                Margin="0,230,0,0" Click="btn_Order_Click"/>
+                Margin="0,110,0,0" Click="btn_Order_Click"/>
 
         <Button Grid.Row="1"
                 Width="200"
@@ -60,7 +60,18 @@
                 Background="#FFCEDCFF"
                 Foreground="#FF1A296B" 
                 x:Name="btn_Service"
-                Margin="0,80,0,0" Click="btn_Service_Click"/>
+                Margin="0,-20,0,0" Click="btn_Service_Click"/>
+
+        <Button Grid.Row="1"
+                Width="200"
+                Height="40"
+                Content="Отчёт"
+                FontSize="20" 
+                Background="#FFCEDCFF"
+                Foreground="#FF1A296B" 
+                x:Name="btn_Report"
+                Margin="0,240,0,0"
+                Click="btn_Report_Click"/>
 
     </Grid>
 </Window>

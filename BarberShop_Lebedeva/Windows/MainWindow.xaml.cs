@@ -56,5 +56,12 @@ namespace BarberShop_Lebedeva
             serviceWindow.Show();
             this.Close();
         }
+
+        private void btn_Report_Click(object sender, RoutedEventArgs e)
+        {
+            ReportWindow reportWindow = new ReportWindow();
+            reportWindow.Show();
+            this.Close();
+        }
     }
 }

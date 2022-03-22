@@ -47,7 +47,7 @@ namespace BarberShop_Lebedeva.Windows
             {
                     EF.Service addService = new EF.Service();
                     addService.Title = txt_TitleService.Text;
-                    addService.Cost = txt_CostService.Text;
+                    addService.Cost = Convert.ToDecimal(txt_CostService.Text);
 
                     ClassesHelper.AppData.context.Service.Add(addService);
                     ClassesHelper.AppData.context.SaveChanges();
@@ -80,7 +80,7 @@ namespace BarberShop_Lebedeva.Windows
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void txt_CostService_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void txt_CostService_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true;
 
@@ -95,10 +95,6 @@ namespace BarberShop_Lebedeva.Windows
 
         private void txt_TitleService_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Space)
-            {
-                e.Handled = true;
-            }
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.V)
             {
                 e.Handled = true;

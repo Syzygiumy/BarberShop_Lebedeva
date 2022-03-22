@@ -84,7 +84,7 @@ namespace BarberShop_Lebedeva.Windows
         {
             if (e.Key == Key.Delete || e.Key == Key.Back)
             {
-                var resClick = MessageBox.Show($"Удалить услугу {(lvService.SelectedItem as EF.Service).ID}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                var resClick = MessageBox.Show($"Удалить услугу {(lvService.SelectedItem as EF.Service).Title}?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 try
                 {
 
@@ -119,6 +119,7 @@ namespace BarberShop_Lebedeva.Windows
             this.Opacity = 0.2;
             addServiceWindow.ShowDialog();
             this.Opacity = 1;
+            Filter();
         }
     }
 }
