@@ -42,7 +42,8 @@
                  Margin="-325,-20,0,0"
                  Height="35"
                  x:Name="txt_Search"
-                 FontSize="25"/>
+                 FontSize="25"
+                 TextChanged="txt_Search_TextChanged"/>
 
         <ListView x:Name="lvREPORT"
                    Grid.Row="3">
@@ -69,13 +70,14 @@
                 x:Name="btn_AddService"/>
 
         <ComboBox Grid.Row="2"
-                 Width="230"
+                 Width="280"
                  VerticalAlignment="Center"
                  HorizontalAlignment="Center" 
-                 Margin="250,-20,0,0"
+                 Margin="290,-20,0,0"
                  Height="35"
                  x:Name="cmb_Sort"
-                 FontSize="20"/>
+                 FontSize="20"
+                 SelectionChanged="cmb_Sort_SelectionChanged"/>
 
         <Button Grid.Row="4"
                 Content="Назад"
@@ -86,6 +88,6 @@
                 Width="100"
                 Background="#FFCEDCFF"
                 Foreground="#FF1A296B"
-                x:Name="btn_Back"/>
+                x:Name="btn_Back" Click="btn_Back_Click"/>
     </Grid>
 </Window>

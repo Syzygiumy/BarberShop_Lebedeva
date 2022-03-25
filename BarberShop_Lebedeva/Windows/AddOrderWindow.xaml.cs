@@ -51,9 +51,9 @@ namespace BarberShop_Lebedeva.Windows
                 DateTime date = DateTime.Now;
 
                 EF.Order addorder = new EF.Order();
-                addorder.IDClient = cmb_LNameClient.SelectedIndex + 1;
-                addorder.IDEmploee = cmb_LNamePersonal.SelectedIndex + 1;
-                addorder.IDService = cmb_TitleName.SelectedIndex + 1;
+                addorder.IDClient = (cmb_LNameClient.SelectedItem as EF.Client).ID;
+                addorder.IDEmploee = (cmb_LNamePersonal.SelectedItem as EF.Emploee).ID;
+                addorder.IDService = (cmb_TitleName.SelectedItem as EF.Service).ID;
                 addorder.Start = date;
                 addorder.TheEnd = date.AddMinutes(30);
                 addorder.IsDeleted = false;

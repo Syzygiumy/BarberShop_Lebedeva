@@ -97,6 +97,7 @@ namespace BarberShop_Lebedeva.Windows
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
+
         }
 
         private void lvOrder_KeyUp(object sender, KeyEventArgs e)
@@ -138,6 +139,7 @@ namespace BarberShop_Lebedeva.Windows
             this.Opacity = 0.2;
             addOrderWindow.ShowDialog();
             this.Opacity = 1;
+            Filter();
         }
     }
 }
