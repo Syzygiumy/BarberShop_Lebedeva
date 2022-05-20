@@ -8,6 +8,6 @@ namespace BarberShop_Lebedeva.ClassesHelper
 {
     internal class AppData
     {
-        public static EF.BarberShop2Entities5 context = new EF.BarberShop2Entities5();
+        public static EF.BarberShop2Entities7 context = new EF.BarberShop2Entities7();
     }
 }

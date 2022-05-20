@@ -167,7 +167,7 @@ namespace BarberShop_Lebedeva.Windows
                         addEmployee.FName = txt_FName.Text;
                         addEmployee.LName = txt_LName.Text;
                         addEmployee.Phone = txt_Phone.Text;
-                        addEmployee.IDNameSpecialization = cmb_Spec.SelectedIndex + 2;
+                        addEmployee.IDNameSpecialization = (cmb_Spec.SelectedItem as EF.Specialization).ID;
                         addEmployee.Login = txt_Login.Text;
                         addEmployee.Password = txt_Password.Password;
                         addEmployee.IsDeleted = false;

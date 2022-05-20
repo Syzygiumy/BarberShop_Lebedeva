@@ -136,9 +136,18 @@
                             </Grid.RowDefinitions>
 
                             <Image Grid.Column="0"
-                       Grid.Row="0"
-                       Grid.RowSpan="3"
-                       Source="C:\Users\IMac2\Source\Repos\BarberShop_Lebedeva1\BarberShop_Lebedeva\Images\1200px-User_icon_2.svg.png" />
+                                   Grid.Row="0"
+                                   Grid.RowSpan="3"
+                                   Width="100"
+                                   Height="100">
+                                <Image.Source>
+                                    <Binding Path="Photo">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>/BarberShop_lebedeva;component/images/adm (2).png</ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
 
                             <!-- 1 -->
                             <TextBlock Text="Фамилия:"
